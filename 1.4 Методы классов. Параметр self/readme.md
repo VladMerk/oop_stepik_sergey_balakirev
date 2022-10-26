@@ -102,7 +102,7 @@ lst_in = list(map(str.strip, sys.stdin.readlines()))  # считывание с�
 
 Необходимо в класс DataBase:
 
-```
+```python
 class DataBase:
     lst_data = []
     FIELDS = ('id', 'name', 'old', 'salary')
