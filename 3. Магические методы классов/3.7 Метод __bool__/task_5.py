@@ -64,24 +64,28 @@ class GamePole:
         return self.__pole_cells
 
     def init_pole(self):
+# Расставляем мины по полю в случайном порядке
         m = 0
         while m < self.total_mines:
+# цикл пока не достигнет нужного количества мин
             i = random.randint(0, self.N - 1)
             j = random.randint(0, self.N - 1)
             if self.pole[i][j].is_mine:
+                # если мина в этом поле уже есть, просто продолжаем цикл
                 continue
-            self.pole[i][j].is_mine = True
+            self.pole[i][j].is_mine = True # иначе устанавливаем мину
             m += 1
         indx = (-1, -1), (-1, 0), (-1, 1), (0, -1),\
-                            (0, 1), (1, -1), (1, 0), (1, 1)
+                            (0, 1), (1, -1), (1, 0), (1, 1) # индексы для обхода клеток
         for x, y in itertools.product(range(self.N), range(self.M)):
+            # перебираем все клетки и считаем мины вокруг нее
             if not self.pole[x][y].is_mine:
                 mines = sum((self.pole[x+i][y+j].is_mine
                 for i,j in indx if 0 <= x+i < self.N and 0 <= y+j < self.M))
-            self.pole[x][y].number = mines
+            self.pole[x][y].number = mines # после подсчета, устанавливаем количество мин в клетку.
 
     def open_cell(self, i, j):
-        self.__pole_cells[i][j].is_open = True
+        self.pole[i][j].is_open = True
 
     def show_pole(self):
         for row in self.pole:
