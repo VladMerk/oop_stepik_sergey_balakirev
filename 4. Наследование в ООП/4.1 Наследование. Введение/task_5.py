@@ -14,9 +14,8 @@ class IntegerValidator(Validator):
         self.max_value = max_value
 
     def _is_valid(self, data):
-        if isinstance(data, int):
-            if self.min_value <= data <= self.max_value:
-                return True
+        if isinstance(data, int) and self.min_value <= data <= self.max_value:
+            return True
         raise ValueError('данные не прошли валидацию')
 
 
@@ -26,9 +25,8 @@ class FloatValidator(Validator):
         self.max_value = max_value
 
     def _is_valid(self, data):
-        if isinstance(data, int):
-            if self.min_value <= data <= self.max_value:
-                return True
+        if isinstance(data, int) and self.min_value <= data <= self.max_value:
+            return True
         raise ValueError('данные не прошли валидацию')
 
 
